@@ -1,0 +1,1280 @@
+
+FULL_PROJECT_TESTED.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000572  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000001c  00800060  00000572  00000606  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000002a  0080007c  0080007c  00000622  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000622  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000654  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000148  00000000  00000000  00000690  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00001117  00000000  00000000  000007d8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000992  00000000  00000000  000018ef  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000e05  00000000  00000000  00002281  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000001f8  00000000  00000000  00003088  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000657  00000000  00000000  00003280  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000e18  00000000  00000000  000038d7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000c8  00000000  00000000  000046ef  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 17 01 	jmp	0x22e	; 0x22e <__vector_10>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e2 e7       	ldi	r30, 0x72	; 114
+  68:	f5 e0       	ldi	r31, 0x05	; 5
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	ac 37       	cpi	r26, 0x7C	; 124
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	ac e7       	ldi	r26, 0x7C	; 124
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a6 3a       	cpi	r26, 0xA6	; 166
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 9c 02 	call	0x538	; 0x538 <main>
+  8a:	0c 94 b7 02 	jmp	0x56e	; 0x56e <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <LED1>:
+
+ #include "APP.h"
+
+ void LED1 (void)
+ {
+	 PORTB ^= 1<<1;
+  92:	98 b3       	in	r25, 0x18	; 24
+  94:	82 e0       	ldi	r24, 0x02	; 2
+  96:	89 27       	eor	r24, r25
+  98:	88 bb       	out	0x18, r24	; 24
+  9a:	08 95       	ret
+
+0000009c <LED2>:
+ }
+
+ void LED2 (void)
+ {
+	 PORTB ^= 1<<2;
+  9c:	98 b3       	in	r25, 0x18	; 24
+  9e:	84 e0       	ldi	r24, 0x04	; 4
+  a0:	89 27       	eor	r24, r25
+  a2:	88 bb       	out	0x18, r24	; 24
+  a4:	08 95       	ret
+
+000000a6 <LED3>:
+ }
+
+ void LED3 (void)
+ {
+	 PORTB ^= 1<<3;
+  a6:	98 b3       	in	r25, 0x18	; 24
+  a8:	88 e0       	ldi	r24, 0x08	; 8
+  aa:	89 27       	eor	r24, r25
+  ac:	88 bb       	out	0x18, r24	; 24
+  ae:	08 95       	ret
+
+000000b0 <LED4>:
+ }
+ void LED4 (void)
+ {
+	 PORTB ^= 1<<4;
+  b0:	98 b3       	in	r25, 0x18	; 24
+  b2:	80 e1       	ldi	r24, 0x10	; 16
+  b4:	89 27       	eor	r24, r25
+  b6:	88 bb       	out	0x18, r24	; 24
+  b8:	08 95       	ret
+
+000000ba <TMU_Init>:
+	else
+	{
+	 retval = ERROR_ACCESS_NULL_PTR;						/* Access Null Pointer Error */
+	}
+	return retval;
+ }
+  ba:	cf 93       	push	r28
+  bc:	df 93       	push	r29
+  be:	8f 31       	cpi	r24, 0x1F	; 31
+  c0:	91 05       	cpc	r25, r1
+  c2:	58 f4       	brcc	.+22     	; 0xda <TMU_Init+0x20>
+  c4:	ec 01       	movw	r28, r24
+  c6:	88 e7       	ldi	r24, 0x78	; 120
+  c8:	90 e0       	ldi	r25, 0x00	; 0
+  ca:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <Timer_Init>
+  ce:	d0 93 9f 00 	sts	0x009F, r29	; 0x80009f <gu16_Resolution+0x1>
+  d2:	c0 93 9e 00 	sts	0x009E, r28	; 0x80009e <gu16_Resolution>
+  d6:	80 e0       	ldi	r24, 0x00	; 0
+  d8:	01 c0       	rjmp	.+2      	; 0xdc <TMU_Init+0x22>
+  da:	8f ef       	ldi	r24, 0xFF	; 255
+  dc:	df 91       	pop	r29
+  de:	cf 91       	pop	r28
+  e0:	08 95       	ret
+
+000000e2 <TMU_Start>:
+  e2:	dc 01       	movw	r26, r24
+  e4:	4d 91       	ld	r20, X+
+  e6:	5c 91       	ld	r21, X
+  e8:	11 97       	sbiw	r26, 0x01	; 1
+  ea:	41 15       	cp	r20, r1
+  ec:	51 05       	cpc	r21, r1
+  ee:	09 f4       	brne	.+2      	; 0xf2 <TMU_Start+0x10>
+  f0:	42 c0       	rjmp	.+132    	; 0x176 <TMU_Start+0x94>
+  f2:	90 91 9d 00 	lds	r25, 0x009D	; 0x80009d <gu8_BufferCount>
+  f6:	e9 2f       	mov	r30, r25
+  f8:	f0 e0       	ldi	r31, 0x00	; 0
+  fa:	9f 01       	movw	r18, r30
+  fc:	22 0f       	add	r18, r18
+  fe:	33 1f       	adc	r19, r19
+ 100:	e2 0f       	add	r30, r18
+ 102:	f3 1f       	adc	r31, r19
+ 104:	ee 0f       	add	r30, r30
+ 106:	ff 1f       	adc	r31, r31
+ 108:	ec 57       	subi	r30, 0x7C	; 124
+ 10a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 10c:	51 83       	std	Z+1, r21	; 0x01
+ 10e:	40 83       	st	Z, r20
+ 110:	12 96       	adiw	r26, 0x02	; 2
+ 112:	4d 91       	ld	r20, X+
+ 114:	5c 91       	ld	r21, X
+ 116:	13 97       	sbiw	r26, 0x03	; 3
+ 118:	53 83       	std	Z+3, r21	; 0x03
+ 11a:	42 83       	std	Z+2, r20	; 0x02
+ 11c:	14 96       	adiw	r26, 0x04	; 4
+ 11e:	8c 91       	ld	r24, X
+ 120:	14 97       	sbiw	r26, 0x04	; 4
+ 122:	84 83       	std	Z+4, r24	; 0x04
+ 124:	15 96       	adiw	r26, 0x05	; 5
+ 126:	8c 91       	ld	r24, X
+ 128:	85 83       	std	Z+5, r24	; 0x05
+ 12a:	f9 01       	movw	r30, r18
+ 12c:	e4 58       	subi	r30, 0x84	; 132
+ 12e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 130:	11 82       	std	Z+1, r1	; 0x01
+ 132:	10 82       	st	Z, r1
+ 134:	81 e0       	ldi	r24, 0x01	; 1
+ 136:	89 0f       	add	r24, r25
+ 138:	80 93 9d 00 	sts	0x009D, r24	; 0x80009d <gu8_BufferCount>
+ 13c:	85 30       	cpi	r24, 0x05	; 5
+ 13e:	e8 f4       	brcc	.+58     	; 0x17a <TMU_Start+0x98>
+ 140:	80 91 9c 00 	lds	r24, 0x009C	; 0x80009c <gu8_TMU_flag>
+ 144:	81 11       	cpse	r24, r1
+ 146:	1b c0       	rjmp	.+54     	; 0x17e <TMU_Start+0x9c>
+ 148:	81 e0       	ldi	r24, 0x01	; 1
+ 14a:	80 93 9c 00 	sts	0x009C, r24	; 0x80009c <gu8_TMU_flag>
+ 14e:	80 91 9e 00 	lds	r24, 0x009E	; 0x80009e <gu16_Resolution>
+ 152:	90 91 9f 00 	lds	r25, 0x009F	; 0x80009f <gu16_Resolution+0x1>
+ 156:	ac 01       	movw	r20, r24
+ 158:	44 0f       	add	r20, r20
+ 15a:	55 1f       	adc	r21, r21
+ 15c:	44 0f       	add	r20, r20
+ 15e:	55 1f       	adc	r21, r21
+ 160:	44 0f       	add	r20, r20
+ 162:	55 1f       	adc	r21, r21
+ 164:	48 1b       	sub	r20, r24
+ 166:	59 0b       	sbc	r21, r25
+ 168:	60 e0       	ldi	r22, 0x00	; 0
+ 16a:	70 e0       	ldi	r23, 0x00	; 0
+ 16c:	80 e0       	ldi	r24, 0x00	; 0
+ 16e:	0e 94 f2 01 	call	0x3e4	; 0x3e4 <Timer_Start>
+ 172:	80 e0       	ldi	r24, 0x00	; 0
+ 174:	08 95       	ret
+ 176:	8d ef       	ldi	r24, 0xFD	; 253
+ 178:	08 95       	ret
+ 17a:	8e ef       	ldi	r24, 0xFE	; 254
+ 17c:	08 95       	ret
+ 17e:	80 e0       	ldi	r24, 0x00	; 0
+ 180:	08 95       	ret
+
+00000182 <TMU_Dispatcher>:
+ 182:	ef 92       	push	r14
+ 184:	ff 92       	push	r15
+ 186:	0f 93       	push	r16
+ 188:	1f 93       	push	r17
+ 18a:	cf 93       	push	r28
+ 18c:	df 93       	push	r29
+ 18e:	80 91 9d 00 	lds	r24, 0x009D	; 0x80009d <gu8_BufferCount>
+ 192:	88 23       	and	r24, r24
+ 194:	09 f4       	brne	.+2      	; 0x198 <TMU_Dispatcher+0x16>
+ 196:	43 c0       	rjmp	.+134    	; 0x21e <TMU_Dispatcher+0x9c>
+ 198:	10 e0       	ldi	r17, 0x00	; 0
+ 19a:	01 e0       	ldi	r16, 0x01	; 1
+ 19c:	c1 2f       	mov	r28, r17
+ 19e:	d0 e0       	ldi	r29, 0x00	; 0
+ 1a0:	ce 01       	movw	r24, r28
+ 1a2:	88 0f       	add	r24, r24
+ 1a4:	99 1f       	adc	r25, r25
+ 1a6:	fc 01       	movw	r30, r24
+ 1a8:	ec 0f       	add	r30, r28
+ 1aa:	fd 1f       	adc	r31, r29
+ 1ac:	ee 0f       	add	r30, r30
+ 1ae:	ff 1f       	adc	r31, r31
+ 1b0:	ec 57       	subi	r30, 0x7C	; 124
+ 1b2:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1b4:	dc 01       	movw	r26, r24
+ 1b6:	a4 58       	subi	r26, 0x84	; 132
+ 1b8:	bf 4f       	sbci	r27, 0xFF	; 255
+ 1ba:	22 81       	ldd	r18, Z+2	; 0x02
+ 1bc:	33 81       	ldd	r19, Z+3	; 0x03
+ 1be:	8d 91       	ld	r24, X+
+ 1c0:	9c 91       	ld	r25, X
+ 1c2:	11 97       	sbiw	r26, 0x01	; 1
+ 1c4:	28 17       	cp	r18, r24
+ 1c6:	39 07       	cpc	r19, r25
+ 1c8:	19 f5       	brne	.+70     	; 0x210 <TMU_Dispatcher+0x8e>
+ 1ca:	fe 01       	movw	r30, r28
+ 1cc:	ee 0f       	add	r30, r30
+ 1ce:	ff 1f       	adc	r31, r31
+ 1d0:	ec 0f       	add	r30, r28
+ 1d2:	fd 1f       	adc	r31, r29
+ 1d4:	ee 0f       	add	r30, r30
+ 1d6:	ff 1f       	adc	r31, r31
+ 1d8:	ec 57       	subi	r30, 0x7C	; 124
+ 1da:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1dc:	85 81       	ldd	r24, Z+5	; 0x05
+ 1de:	81 11       	cpse	r24, r1
+ 1e0:	17 c0       	rjmp	.+46     	; 0x210 <TMU_Dispatcher+0x8e>
+ 1e2:	ce 01       	movw	r24, r28
+ 1e4:	88 0f       	add	r24, r24
+ 1e6:	99 1f       	adc	r25, r25
+ 1e8:	fd 01       	movw	r30, r26
+ 1ea:	11 82       	std	Z+1, r1	; 0x01
+ 1ec:	10 82       	st	Z, r1
+ 1ee:	8c 0f       	add	r24, r28
+ 1f0:	9d 1f       	adc	r25, r29
+ 1f2:	88 0f       	add	r24, r24
+ 1f4:	99 1f       	adc	r25, r25
+ 1f6:	9c 01       	movw	r18, r24
+ 1f8:	2c 57       	subi	r18, 0x7C	; 124
+ 1fa:	3f 4f       	sbci	r19, 0xFF	; 255
+ 1fc:	79 01       	movw	r14, r18
+ 1fe:	d9 01       	movw	r26, r18
+ 200:	ed 91       	ld	r30, X+
+ 202:	fc 91       	ld	r31, X
+ 204:	09 95       	icall
+ 206:	f7 01       	movw	r30, r14
+ 208:	84 81       	ldd	r24, Z+4	; 0x04
+ 20a:	81 30       	cpi	r24, 0x01	; 1
+ 20c:	09 f4       	brne	.+2      	; 0x210 <TMU_Dispatcher+0x8e>
+ 20e:	05 83       	std	Z+5, r16	; 0x05
+ 210:	1f 5f       	subi	r17, 0xFF	; 255
+ 212:	80 91 9d 00 	lds	r24, 0x009D	; 0x80009d <gu8_BufferCount>
+ 216:	18 17       	cp	r17, r24
+ 218:	08 f2       	brcs	.-126    	; 0x19c <TMU_Dispatcher+0x1a>
+ 21a:	80 e0       	ldi	r24, 0x00	; 0
+ 21c:	01 c0       	rjmp	.+2      	; 0x220 <TMU_Dispatcher+0x9e>
+ 21e:	8c ef       	ldi	r24, 0xFC	; 252
+ 220:	df 91       	pop	r29
+ 222:	cf 91       	pop	r28
+ 224:	1f 91       	pop	r17
+ 226:	0f 91       	pop	r16
+ 228:	ff 90       	pop	r15
+ 22a:	ef 90       	pop	r14
+ 22c:	08 95       	ret
+
+0000022e <__vector_10>:
+
+  /*___Timer0 COMP Interrupt___*/
+  void __vector_10 (void)
+  {
+ 22e:	1f 92       	push	r1
+ 230:	0f 92       	push	r0
+ 232:	0f b6       	in	r0, 0x3f	; 63
+ 234:	0f 92       	push	r0
+ 236:	11 24       	eor	r1, r1
+ 238:	2f 93       	push	r18
+ 23a:	3f 93       	push	r19
+ 23c:	8f 93       	push	r24
+ 23e:	9f 93       	push	r25
+ 240:	ef 93       	push	r30
+ 242:	ff 93       	push	r31
+	 uint8_t u8_count =0;
+	 for( u8_count;u8_count< gu8_BufferCount ;u8_count++ )
+ 244:	30 91 9d 00 	lds	r19, 0x009D	; 0x80009d <gu8_BufferCount>
+ 248:	33 23       	and	r19, r19
+ 24a:	59 f0       	breq	.+22     	; 0x262 <__vector_10+0x34>
+ 24c:	ec e7       	ldi	r30, 0x7C	; 124
+ 24e:	f0 e0       	ldi	r31, 0x00	; 0
+ 250:	20 e0       	ldi	r18, 0x00	; 0
+	 {
+	    /* increase counter from every ISR */
+		ga_Counter[u8_count]++;
+ 252:	80 81       	ld	r24, Z
+ 254:	91 81       	ldd	r25, Z+1	; 0x01
+ 256:	01 96       	adiw	r24, 0x01	; 1
+ 258:	81 93       	st	Z+, r24
+ 25a:	91 93       	st	Z+, r25
+
+  /*___Timer0 COMP Interrupt___*/
+  void __vector_10 (void)
+  {
+	 uint8_t u8_count =0;
+	 for( u8_count;u8_count< gu8_BufferCount ;u8_count++ )
+ 25c:	2f 5f       	subi	r18, 0xFF	; 255
+ 25e:	23 13       	cpse	r18, r19
+ 260:	f8 cf       	rjmp	.-16     	; 0x252 <__vector_10+0x24>
+	 {
+	    /* increase counter from every ISR */
+		ga_Counter[u8_count]++;
+	 }
+ 262:	ff 91       	pop	r31
+ 264:	ef 91       	pop	r30
+ 266:	9f 91       	pop	r25
+ 268:	8f 91       	pop	r24
+ 26a:	3f 91       	pop	r19
+ 26c:	2f 91       	pop	r18
+ 26e:	0f 90       	pop	r0
+ 270:	0f be       	out	0x3f, r0	; 63
+ 272:	0f 90       	pop	r0
+ 274:	1f 90       	pop	r1
+ 276:	18 95       	reti
+
+00000278 <DIO_Init_Port>:
+uint8_t  DIO_Init_Port (uint8_t u8_Port_Number,uint8_t u8_Port_State)
+{
+	uint8_t retval = ERROR_OK;
+	
+	/* Check for PORT A */
+	if( u8_Port_Number == PORT_A )
+ 278:	81 11       	cpse	r24, r1
+ 27a:	0b c0       	rjmp	.+22     	; 0x292 <DIO_Init_Port+0x1a>
+	{
+		if( u8_Port_State == OUTPUTS )
+ 27c:	6f 3f       	cpi	r22, 0xFF	; 255
+ 27e:	21 f4       	brne	.+8      	; 0x288 <DIO_Init_Port+0x10>
+		{
+			DDRA = OUTPUTS;
+ 280:	8f ef       	ldi	r24, 0xFF	; 255
+ 282:	8a bb       	out	0x1a, r24	; 26
+}
+
+
+uint8_t  DIO_Init_Port (uint8_t u8_Port_Number,uint8_t u8_Port_State)
+{
+	uint8_t retval = ERROR_OK;
+ 284:	80 e0       	ldi	r24, 0x00	; 0
+ 286:	08 95       	ret
+	{
+		if( u8_Port_State == OUTPUTS )
+		{
+			DDRA = OUTPUTS;
+		}
+			else if( u8_Port_State == INPUTS )
+ 288:	61 11       	cpse	r22, r1
+ 28a:	2a c0       	rjmp	.+84     	; 0x2e0 <DIO_Init_Port+0x68>
+			{
+				DDRA = INPUTS;
+ 28c:	1a ba       	out	0x1a, r1	; 26
+}
+
+
+uint8_t  DIO_Init_Port (uint8_t u8_Port_Number,uint8_t u8_Port_State)
+{
+	uint8_t retval = ERROR_OK;
+ 28e:	80 e0       	ldi	r24, 0x00	; 0
+ 290:	08 95       	ret
+				{
+					retval = ERROR_NOK;
+				}
+	}
+	/* Check for PORT B */
+	else if( u8_Port_Number == PORT_B )
+ 292:	81 30       	cpi	r24, 0x01	; 1
+ 294:	59 f4       	brne	.+22     	; 0x2ac <DIO_Init_Port+0x34>
+	{
+		if( u8_Port_State == OUTPUTS )
+ 296:	6f 3f       	cpi	r22, 0xFF	; 255
+ 298:	21 f4       	brne	.+8      	; 0x2a2 <DIO_Init_Port+0x2a>
+		{
+			DDRB = OUTPUTS;
+ 29a:	8f ef       	ldi	r24, 0xFF	; 255
+ 29c:	87 bb       	out	0x17, r24	; 23
+}
+
+
+uint8_t  DIO_Init_Port (uint8_t u8_Port_Number,uint8_t u8_Port_State)
+{
+	uint8_t retval = ERROR_OK;
+ 29e:	80 e0       	ldi	r24, 0x00	; 0
+ 2a0:	08 95       	ret
+	{
+		if( u8_Port_State == OUTPUTS )
+		{
+			DDRB = OUTPUTS;
+		}
+			else if( u8_Port_State == INPUTS )
+ 2a2:	61 11       	cpse	r22, r1
+ 2a4:	1f c0       	rjmp	.+62     	; 0x2e4 <DIO_Init_Port+0x6c>
+			{
+				DDRB = INPUTS;
+ 2a6:	17 ba       	out	0x17, r1	; 23
+}
+
+
+uint8_t  DIO_Init_Port (uint8_t u8_Port_Number,uint8_t u8_Port_State)
+{
+	uint8_t retval = ERROR_OK;
+ 2a8:	80 e0       	ldi	r24, 0x00	; 0
+ 2aa:	08 95       	ret
+				{
+					retval = ERROR_NOK;
+				}
+	}
+	/* Check for PORT C */
+	else if( u8_Port_Number == PORT_C )
+ 2ac:	82 30       	cpi	r24, 0x02	; 2
+ 2ae:	59 f4       	brne	.+22     	; 0x2c6 <DIO_Init_Port+0x4e>
+	{
+		if( u8_Port_State == OUTPUTS )
+ 2b0:	6f 3f       	cpi	r22, 0xFF	; 255
+ 2b2:	21 f4       	brne	.+8      	; 0x2bc <DIO_Init_Port+0x44>
+		{
+			DDRC = OUTPUTS;
+ 2b4:	8f ef       	ldi	r24, 0xFF	; 255
+ 2b6:	84 bb       	out	0x14, r24	; 20
+}
+
+
+uint8_t  DIO_Init_Port (uint8_t u8_Port_Number,uint8_t u8_Port_State)
+{
+	uint8_t retval = ERROR_OK;
+ 2b8:	80 e0       	ldi	r24, 0x00	; 0
+ 2ba:	08 95       	ret
+	{
+		if( u8_Port_State == OUTPUTS )
+		{
+			DDRC = OUTPUTS;
+		}
+			else if( u8_Port_State == INPUTS )
+ 2bc:	61 11       	cpse	r22, r1
+ 2be:	14 c0       	rjmp	.+40     	; 0x2e8 <DIO_Init_Port+0x70>
+			{
+				DDRC = INPUTS;
+ 2c0:	14 ba       	out	0x14, r1	; 20
+}
+
+
+uint8_t  DIO_Init_Port (uint8_t u8_Port_Number,uint8_t u8_Port_State)
+{
+	uint8_t retval = ERROR_OK;
+ 2c2:	80 e0       	ldi	r24, 0x00	; 0
+ 2c4:	08 95       	ret
+				{
+				retval = ERROR_NOK;
+				}
+	}
+	/* Check for PORT D */
+	else if( u8_Port_Number == PORT_D )
+ 2c6:	83 30       	cpi	r24, 0x03	; 3
+ 2c8:	89 f4       	brne	.+34     	; 0x2ec <DIO_Init_Port+0x74>
+	{
+		if( u8_Port_State == OUTPUTS )
+ 2ca:	6f 3f       	cpi	r22, 0xFF	; 255
+ 2cc:	21 f4       	brne	.+8      	; 0x2d6 <DIO_Init_Port+0x5e>
+		{
+			DDRD = OUTPUTS;
+ 2ce:	8f ef       	ldi	r24, 0xFF	; 255
+ 2d0:	81 bb       	out	0x11, r24	; 17
+}
+
+
+uint8_t  DIO_Init_Port (uint8_t u8_Port_Number,uint8_t u8_Port_State)
+{
+	uint8_t retval = ERROR_OK;
+ 2d2:	80 e0       	ldi	r24, 0x00	; 0
+ 2d4:	08 95       	ret
+	{
+		if( u8_Port_State == OUTPUTS )
+		{
+			DDRD = OUTPUTS;
+		}
+			else if( u8_Port_State == INPUTS )
+ 2d6:	61 11       	cpse	r22, r1
+ 2d8:	0b c0       	rjmp	.+22     	; 0x2f0 <DIO_Init_Port+0x78>
+			{
+				DDRD = INPUTS;
+ 2da:	11 ba       	out	0x11, r1	; 17
+}
+
+
+uint8_t  DIO_Init_Port (uint8_t u8_Port_Number,uint8_t u8_Port_State)
+{
+	uint8_t retval = ERROR_OK;
+ 2dc:	80 e0       	ldi	r24, 0x00	; 0
+ 2de:	08 95       	ret
+			{
+				DDRA = INPUTS;
+			}
+				else 
+				{
+					retval = ERROR_NOK;
+ 2e0:	81 e0       	ldi	r24, 0x01	; 1
+ 2e2:	08 95       	ret
+			{
+				DDRB = INPUTS;
+			}
+				else 
+				{
+					retval = ERROR_NOK;
+ 2e4:	81 e0       	ldi	r24, 0x01	; 1
+ 2e6:	08 95       	ret
+			{
+				DDRC = INPUTS;
+			}
+				else 
+				{
+				retval = ERROR_NOK;
+ 2e8:	81 e0       	ldi	r24, 0x01	; 1
+ 2ea:	08 95       	ret
+				}
+	}
+	/* Error PORT input */
+	else
+	{
+		retval = ERROR_NOK;
+ 2ec:	81 e0       	ldi	r24, 0x01	; 1
+ 2ee:	08 95       	ret
+			{
+				DDRD = INPUTS;
+			}
+				else 
+				{
+					retval = ERROR_NOK;
+ 2f0:	81 e0       	ldi	r24, 0x01	; 1
+	else
+	{
+		retval = ERROR_NOK;
+	}
+	return retval;
+}
+ 2f2:	08 95       	ret
+
+000002f4 <Timer_Init>:
+
+static uint8_t gau8_TimerPrescaller[NO_OF_CHANNELS] = {NULL,NULL,NULL};     /* Global Array to store prescaler */ 
+static uint8_t gau8_TimerMode[NO_OF_CHANNELS] = {NULL,NULL,NULL};			/* Global Array to store Timer_Mode */ 
+   
+extern uint8_t Timer_Init(Str_TimerConfiguration_t* pstr_Timer_Confg)
+{
+ 2f4:	fc 01       	movw	r30, r24
+	uint8_t retval = ERROR_OK;  
+	/* Check for Timer Channel */
+	switch(pstr_Timer_Confg->u8_Channel)               
+ 2f6:	80 81       	ld	r24, Z
+ 2f8:	81 30       	cpi	r24, 0x01	; 1
+ 2fa:	51 f1       	breq	.+84     	; 0x350 <Timer_Init+0x5c>
+ 2fc:	20 f0       	brcs	.+8      	; 0x306 <Timer_Init+0x12>
+ 2fe:	82 30       	cpi	r24, 0x02	; 2
+ 300:	09 f4       	brne	.+2      	; 0x304 <Timer_Init+0x10>
+ 302:	4a c0       	rjmp	.+148    	; 0x398 <Timer_Init+0xa4>
+ 304:	6d c0       	rjmp	.+218    	; 0x3e0 <Timer_Init+0xec>
+	{	
+		case TIMER0:   
+			/* Check for Timer_Mode */                           
+			switch (pstr_Timer_Confg -> u8_Timer_Mode)
+ 306:	82 81       	ldd	r24, Z+2	; 0x02
+ 308:	88 23       	and	r24, r24
+ 30a:	19 f0       	breq	.+6      	; 0x312 <Timer_Init+0x1e>
+ 30c:	81 30       	cpi	r24, 0x01	; 1
+ 30e:	31 f0       	breq	.+12     	; 0x31c <Timer_Init+0x28>
+ 310:	0a c0       	rjmp	.+20     	; 0x326 <Timer_Init+0x32>
+			{
+				case TIMER_MODE   : gau8_TimerPrescaller[TIMER0] = pstr_Timer_Confg -> u8_Psc;
+ 312:	81 81       	ldd	r24, Z+1	; 0x01
+ 314:	80 93 a3 00 	sts	0x00A3, r24	; 0x8000a3 <gau8_TimerPrescaller>
+static uint8_t gau8_TimerPrescaller[NO_OF_CHANNELS] = {NULL,NULL,NULL};     /* Global Array to store prescaler */ 
+static uint8_t gau8_TimerMode[NO_OF_CHANNELS] = {NULL,NULL,NULL};			/* Global Array to store Timer_Mode */ 
+   
+extern uint8_t Timer_Init(Str_TimerConfiguration_t* pstr_Timer_Confg)
+{
+	uint8_t retval = ERROR_OK;  
+ 318:	80 e0       	ldi	r24, 0x00	; 0
+		case TIMER0:   
+			/* Check for Timer_Mode */                           
+			switch (pstr_Timer_Confg -> u8_Timer_Mode)
+			{
+				case TIMER_MODE   : gau8_TimerPrescaller[TIMER0] = pstr_Timer_Confg -> u8_Psc;
+				break;
+ 31a:	06 c0       	rjmp	.+12     	; 0x328 <Timer_Init+0x34>
+				case COUNTER_MODE : gau8_TimerPrescaller[TIMER0] = pstr_Timer_Confg -> u8_Psc;
+ 31c:	81 81       	ldd	r24, Z+1	; 0x01
+ 31e:	80 93 a3 00 	sts	0x00A3, r24	; 0x8000a3 <gau8_TimerPrescaller>
+static uint8_t gau8_TimerPrescaller[NO_OF_CHANNELS] = {NULL,NULL,NULL};     /* Global Array to store prescaler */ 
+static uint8_t gau8_TimerMode[NO_OF_CHANNELS] = {NULL,NULL,NULL};			/* Global Array to store Timer_Mode */ 
+   
+extern uint8_t Timer_Init(Str_TimerConfiguration_t* pstr_Timer_Confg)
+{
+	uint8_t retval = ERROR_OK;  
+ 322:	80 e0       	ldi	r24, 0x00	; 0
+			switch (pstr_Timer_Confg -> u8_Timer_Mode)
+			{
+				case TIMER_MODE   : gau8_TimerPrescaller[TIMER0] = pstr_Timer_Confg -> u8_Psc;
+				break;
+				case COUNTER_MODE : gau8_TimerPrescaller[TIMER0] = pstr_Timer_Confg -> u8_Psc;
+				break;
+ 324:	01 c0       	rjmp	.+2      	; 0x328 <Timer_Init+0x34>
+				default : retval = ERROR_NOK ;
+ 326:	81 e0       	ldi	r24, 0x01	; 1
+				break;
+			}
+			/* Check for Interrupt_Mode */ 
+			switch (pstr_Timer_Confg -> u8_Interrupt_Mode)
+ 328:	93 81       	ldd	r25, Z+3	; 0x03
+ 32a:	99 23       	and	r25, r25
+ 32c:	19 f0       	breq	.+6      	; 0x334 <Timer_Init+0x40>
+ 32e:	91 30       	cpi	r25, 0x01	; 1
+ 330:	21 f0       	breq	.+8      	; 0x33a <Timer_Init+0x46>
+ 332:	07 c0       	rjmp	.+14     	; 0x342 <Timer_Init+0x4e>
+			{
+				case POLLING	: gau8_TimerMode[TIMER0] = pstr_Timer_Confg -> u8_Interrupt_Mode;
+ 334:	10 92 a0 00 	sts	0x00A0, r1	; 0x8000a0 <gau8_TimerMode>
+				break;
+ 338:	05 c0       	rjmp	.+10     	; 0x344 <Timer_Init+0x50>
+				case INTERRUPT  : gau8_TimerMode[TIMER0] = pstr_Timer_Confg -> u8_Interrupt_Mode;
+ 33a:	91 e0       	ldi	r25, 0x01	; 1
+ 33c:	90 93 a0 00 	sts	0x00A0, r25	; 0x8000a0 <gau8_TimerMode>
+				break;
+ 340:	01 c0       	rjmp	.+2      	; 0x344 <Timer_Init+0x50>
+				default : retval = ERROR_NOK ;
+ 342:	81 e0       	ldi	r24, 0x01	; 1
+				break;
+			}
+			/* Check for valued Prescaler */ 
+			switch (pstr_Timer_Confg -> u8_Psc)
+ 344:	91 81       	ldd	r25, Z+1	; 0x01
+ 346:	96 30       	cpi	r25, 0x06	; 6
+ 348:	08 f4       	brcc	.+2      	; 0x34c <Timer_Init+0x58>
+ 34a:	4b c0       	rjmp	.+150    	; 0x3e2 <Timer_Init+0xee>
+				break;
+				case F_CPU_CLOCK_256_TIMER_0 :
+				break;
+				case F_CPU_CLOCK_1024_TIMER_0 :
+				break;
+				default : retval = ERROR_NOK ;
+ 34c:	81 e0       	ldi	r24, 0x01	; 1
+ 34e:	08 95       	ret
+			}
+		break;
+		/*  Case of TIMER1  */
+		case TIMER1: 
+			/* Check for Timer_Mode */  
+			switch(pstr_Timer_Confg -> u8_Timer_Mode)         
+ 350:	82 81       	ldd	r24, Z+2	; 0x02
+ 352:	88 23       	and	r24, r24
+ 354:	19 f0       	breq	.+6      	; 0x35c <Timer_Init+0x68>
+ 356:	81 30       	cpi	r24, 0x01	; 1
+ 358:	31 f0       	breq	.+12     	; 0x366 <Timer_Init+0x72>
+ 35a:	0a c0       	rjmp	.+20     	; 0x370 <Timer_Init+0x7c>
+			{
+				case TIMER_MODE   : gau8_TimerPrescaller[TIMER1] = pstr_Timer_Confg ->u8_Psc; 
+ 35c:	81 81       	ldd	r24, Z+1	; 0x01
+ 35e:	80 93 a4 00 	sts	0x00A4, r24	; 0x8000a4 <gau8_TimerPrescaller+0x1>
+static uint8_t gau8_TimerPrescaller[NO_OF_CHANNELS] = {NULL,NULL,NULL};     /* Global Array to store prescaler */ 
+static uint8_t gau8_TimerMode[NO_OF_CHANNELS] = {NULL,NULL,NULL};			/* Global Array to store Timer_Mode */ 
+   
+extern uint8_t Timer_Init(Str_TimerConfiguration_t* pstr_Timer_Confg)
+{
+	uint8_t retval = ERROR_OK;  
+ 362:	80 e0       	ldi	r24, 0x00	; 0
+		case TIMER1: 
+			/* Check for Timer_Mode */  
+			switch(pstr_Timer_Confg -> u8_Timer_Mode)         
+			{
+				case TIMER_MODE   : gau8_TimerPrescaller[TIMER1] = pstr_Timer_Confg ->u8_Psc; 
+				break;
+ 364:	06 c0       	rjmp	.+12     	; 0x372 <Timer_Init+0x7e>
+				case COUNTER_MODE : gau8_TimerPrescaller[TIMER1] = pstr_Timer_Confg ->u8_Psc; 
+ 366:	81 81       	ldd	r24, Z+1	; 0x01
+ 368:	80 93 a4 00 	sts	0x00A4, r24	; 0x8000a4 <gau8_TimerPrescaller+0x1>
+static uint8_t gau8_TimerPrescaller[NO_OF_CHANNELS] = {NULL,NULL,NULL};     /* Global Array to store prescaler */ 
+static uint8_t gau8_TimerMode[NO_OF_CHANNELS] = {NULL,NULL,NULL};			/* Global Array to store Timer_Mode */ 
+   
+extern uint8_t Timer_Init(Str_TimerConfiguration_t* pstr_Timer_Confg)
+{
+	uint8_t retval = ERROR_OK;  
+ 36c:	80 e0       	ldi	r24, 0x00	; 0
+			switch(pstr_Timer_Confg -> u8_Timer_Mode)         
+			{
+				case TIMER_MODE   : gau8_TimerPrescaller[TIMER1] = pstr_Timer_Confg ->u8_Psc; 
+				break;
+				case COUNTER_MODE : gau8_TimerPrescaller[TIMER1] = pstr_Timer_Confg ->u8_Psc; 
+				break;
+ 36e:	01 c0       	rjmp	.+2      	; 0x372 <Timer_Init+0x7e>
+				default : retval = ERROR_NOK; 
+ 370:	81 e0       	ldi	r24, 0x01	; 1
+				break;
+			}
+			/* Check for Interrupt_Mode */
+			switch(pstr_Timer_Confg -> u8_Interrupt_Mode)           
+ 372:	93 81       	ldd	r25, Z+3	; 0x03
+ 374:	99 23       	and	r25, r25
+ 376:	19 f0       	breq	.+6      	; 0x37e <Timer_Init+0x8a>
+ 378:	91 30       	cpi	r25, 0x01	; 1
+ 37a:	21 f0       	breq	.+8      	; 0x384 <Timer_Init+0x90>
+ 37c:	07 c0       	rjmp	.+14     	; 0x38c <Timer_Init+0x98>
+			{
+				case POLLING	: gau8_TimerMode[TIMER1] = pstr_Timer_Confg -> u8_Interrupt_Mode;
+ 37e:	10 92 a1 00 	sts	0x00A1, r1	; 0x8000a1 <gau8_TimerMode+0x1>
+				break;
+ 382:	05 c0       	rjmp	.+10     	; 0x38e <Timer_Init+0x9a>
+				case INTERRUPT  : gau8_TimerMode[TIMER1] = pstr_Timer_Confg -> u8_Interrupt_Mode;
+ 384:	91 e0       	ldi	r25, 0x01	; 1
+ 386:	90 93 a1 00 	sts	0x00A1, r25	; 0x8000a1 <gau8_TimerMode+0x1>
+				break;
+ 38a:	01 c0       	rjmp	.+2      	; 0x38e <Timer_Init+0x9a>
+				default : retval = ERROR_NOK ;
+ 38c:	81 e0       	ldi	r24, 0x01	; 1
+				break;
+			}
+			/* Check for valued Prescaler */ 
+			switch (pstr_Timer_Confg -> u8_Psc)
+ 38e:	91 81       	ldd	r25, Z+1	; 0x01
+ 390:	96 30       	cpi	r25, 0x06	; 6
+ 392:	38 f1       	brcs	.+78     	; 0x3e2 <Timer_Init+0xee>
+				break;
+				case F_CPU_CLOCK_256_TIMER_1 :
+				break;
+				case F_CPU_CLOCK_1024_TIMER_1 :
+				break;
+				default : retval = ERROR_NOK ;
+ 394:	81 e0       	ldi	r24, 0x01	; 1
+ 396:	08 95       	ret
+			}
+		break;
+		/*  Case of TIMER2  */
+		case TIMER2:
+			/* Check for Timer_Mode */ 
+			switch (pstr_Timer_Confg -> u8_Timer_Mode)
+ 398:	82 81       	ldd	r24, Z+2	; 0x02
+ 39a:	88 23       	and	r24, r24
+ 39c:	19 f0       	breq	.+6      	; 0x3a4 <Timer_Init+0xb0>
+ 39e:	81 30       	cpi	r24, 0x01	; 1
+ 3a0:	31 f0       	breq	.+12     	; 0x3ae <Timer_Init+0xba>
+ 3a2:	0a c0       	rjmp	.+20     	; 0x3b8 <Timer_Init+0xc4>
+			{
+				case TIMER_MODE   : gau8_TimerPrescaller[TIMER2] = pstr_Timer_Confg -> u8_Psc;
+ 3a4:	81 81       	ldd	r24, Z+1	; 0x01
+ 3a6:	80 93 a5 00 	sts	0x00A5, r24	; 0x8000a5 <gau8_TimerPrescaller+0x2>
+static uint8_t gau8_TimerPrescaller[NO_OF_CHANNELS] = {NULL,NULL,NULL};     /* Global Array to store prescaler */ 
+static uint8_t gau8_TimerMode[NO_OF_CHANNELS] = {NULL,NULL,NULL};			/* Global Array to store Timer_Mode */ 
+   
+extern uint8_t Timer_Init(Str_TimerConfiguration_t* pstr_Timer_Confg)
+{
+	uint8_t retval = ERROR_OK;  
+ 3aa:	80 e0       	ldi	r24, 0x00	; 0
+		case TIMER2:
+			/* Check for Timer_Mode */ 
+			switch (pstr_Timer_Confg -> u8_Timer_Mode)
+			{
+				case TIMER_MODE   : gau8_TimerPrescaller[TIMER2] = pstr_Timer_Confg -> u8_Psc;
+				break;
+ 3ac:	06 c0       	rjmp	.+12     	; 0x3ba <Timer_Init+0xc6>
+				case COUNTER_MODE : gau8_TimerPrescaller[TIMER2] = pstr_Timer_Confg -> u8_Psc;
+ 3ae:	81 81       	ldd	r24, Z+1	; 0x01
+ 3b0:	80 93 a5 00 	sts	0x00A5, r24	; 0x8000a5 <gau8_TimerPrescaller+0x2>
+static uint8_t gau8_TimerPrescaller[NO_OF_CHANNELS] = {NULL,NULL,NULL};     /* Global Array to store prescaler */ 
+static uint8_t gau8_TimerMode[NO_OF_CHANNELS] = {NULL,NULL,NULL};			/* Global Array to store Timer_Mode */ 
+   
+extern uint8_t Timer_Init(Str_TimerConfiguration_t* pstr_Timer_Confg)
+{
+	uint8_t retval = ERROR_OK;  
+ 3b4:	80 e0       	ldi	r24, 0x00	; 0
+			switch (pstr_Timer_Confg -> u8_Timer_Mode)
+			{
+				case TIMER_MODE   : gau8_TimerPrescaller[TIMER2] = pstr_Timer_Confg -> u8_Psc;
+				break;
+				case COUNTER_MODE : gau8_TimerPrescaller[TIMER2] = pstr_Timer_Confg -> u8_Psc;
+				break;
+ 3b6:	01 c0       	rjmp	.+2      	; 0x3ba <Timer_Init+0xc6>
+				default : retval = ERROR_NOK ;
+ 3b8:	81 e0       	ldi	r24, 0x01	; 1
+				break;
+			}
+			/* Check for Interrupt_Mode */
+			switch (pstr_Timer_Confg -> u8_Interrupt_Mode)
+ 3ba:	93 81       	ldd	r25, Z+3	; 0x03
+ 3bc:	99 23       	and	r25, r25
+ 3be:	19 f0       	breq	.+6      	; 0x3c6 <Timer_Init+0xd2>
+ 3c0:	91 30       	cpi	r25, 0x01	; 1
+ 3c2:	21 f0       	breq	.+8      	; 0x3cc <Timer_Init+0xd8>
+ 3c4:	07 c0       	rjmp	.+14     	; 0x3d4 <Timer_Init+0xe0>
+			{
+				case POLLING	: gau8_TimerMode[TIMER2] = pstr_Timer_Confg -> u8_Interrupt_Mode;
+ 3c6:	10 92 a2 00 	sts	0x00A2, r1	; 0x8000a2 <gau8_TimerMode+0x2>
+				break;
+ 3ca:	05 c0       	rjmp	.+10     	; 0x3d6 <Timer_Init+0xe2>
+				case INTERRUPT  : gau8_TimerMode[TIMER2] = pstr_Timer_Confg -> u8_Interrupt_Mode;
+ 3cc:	91 e0       	ldi	r25, 0x01	; 1
+ 3ce:	90 93 a2 00 	sts	0x00A2, r25	; 0x8000a2 <gau8_TimerMode+0x2>
+				break;
+ 3d2:	01 c0       	rjmp	.+2      	; 0x3d6 <Timer_Init+0xe2>
+				default : retval = ERROR_NOK ;
+ 3d4:	81 e0       	ldi	r24, 0x01	; 1
+				break;
+			}
+			/* Check for valued Prescaler */ 
+			switch (pstr_Timer_Confg -> u8_Psc)
+ 3d6:	91 81       	ldd	r25, Z+1	; 0x01
+ 3d8:	98 30       	cpi	r25, 0x08	; 8
+ 3da:	18 f0       	brcs	.+6      	; 0x3e2 <Timer_Init+0xee>
+				break;
+				case F_CPU_CLOCK_256_TIMER_2 :
+				break;
+				case F_CPU_CLOCK_1024_TIMER_2 :
+				break;
+				default : retval = ERROR_NOK ;
+ 3dc:	81 e0       	ldi	r24, 0x01	; 1
+ 3de:	08 95       	ret
+				break;
+			}
+		break;
+		default :  retval = ERROR_NOK;  
+ 3e0:	81 e0       	ldi	r24, 0x01	; 1
+		break;
+	}
+	return retval;   
+}
+ 3e2:	08 95       	ret
+
+000003e4 <Timer_Start>:
+
+
+extern uint8_t Timer_Start(uint8_t u8_TimerChannel,uint32_t u8_TickCounts)
+{
+	uint8_t retval = ERROR_OK;
+	switch(u8_TimerChannel)                                       
+ 3e4:	81 30       	cpi	r24, 0x01	; 1
+ 3e6:	b9 f1       	breq	.+110    	; 0x456 <__LOCK_REGION_LENGTH__+0x56>
+ 3e8:	20 f0       	brcs	.+8      	; 0x3f2 <Timer_Start+0xe>
+ 3ea:	82 30       	cpi	r24, 0x02	; 2
+ 3ec:	09 f4       	brne	.+2      	; 0x3f0 <Timer_Start+0xc>
+ 3ee:	65 c0       	rjmp	.+202    	; 0x4ba <__LOCK_REGION_LENGTH__+0xba>
+ 3f0:	95 c0       	rjmp	.+298    	; 0x51c <__LOCK_REGION_LENGTH__+0x11c>
+	{
+		case TIMER0 :                                 
+			if(u8_TickCounts < TIMER0_OVERFLOW)
+ 3f2:	4f 3f       	cpi	r20, 0xFF	; 255
+ 3f4:	51 05       	cpc	r21, r1
+ 3f6:	61 05       	cpc	r22, r1
+ 3f8:	71 05       	cpc	r23, r1
+ 3fa:	08 f0       	brcs	.+2      	; 0x3fe <Timer_Start+0x1a>
+ 3fc:	91 c0       	rjmp	.+290    	; 0x520 <__LOCK_REGION_LENGTH__+0x120>
+			{
+				switch(gau8_TimerMode[TIMER0])              
+ 3fe:	80 91 a0 00 	lds	r24, 0x00A0	; 0x8000a0 <gau8_TimerMode>
+ 402:	88 23       	and	r24, r24
+ 404:	19 f0       	breq	.+6      	; 0x40c <__LOCK_REGION_LENGTH__+0xc>
+ 406:	81 30       	cpi	r24, 0x01	; 1
+ 408:	91 f0       	breq	.+36     	; 0x42e <__LOCK_REGION_LENGTH__+0x2e>
+ 40a:	8c c0       	rjmp	.+280    	; 0x524 <__LOCK_REGION_LENGTH__+0x124>
+				{
+					case POLLING :	SET_BIT(TIMER0_TCCR0,TIMER0_TCCR0_WGM01);
+ 40c:	83 b7       	in	r24, 0x33	; 51
+ 40e:	88 60       	ori	r24, 0x08	; 8
+ 410:	83 bf       	out	0x33, r24	; 51
+									CLR_BIT(TIMER0_TCCR0,TIMER0_TCCR0_WGM00); 
+ 412:	83 b7       	in	r24, 0x33	; 51
+ 414:	8f 7b       	andi	r24, 0xBF	; 191
+ 416:	83 bf       	out	0x33, r24	; 51
+									CLR_BIT(TIMER0_TIMSK,TIMER0_TIMSK_OCIE0);                                        
+ 418:	89 b7       	in	r24, 0x39	; 57
+ 41a:	8d 7f       	andi	r24, 0xFD	; 253
+ 41c:	89 bf       	out	0x39, r24	; 57
+									TIMER0_TCCR0 |= gau8_TimerPrescaller[TIMER0];  
+ 41e:	93 b7       	in	r25, 0x33	; 51
+ 420:	80 91 a3 00 	lds	r24, 0x00A3	; 0x8000a3 <gau8_TimerPrescaller>
+ 424:	89 2b       	or	r24, r25
+ 426:	83 bf       	out	0x33, r24	; 51
+									TIMER0_OCR0 = u8_TickCounts;
+ 428:	4c bf       	out	0x3c, r20	; 60
+}
+
+
+extern uint8_t Timer_Start(uint8_t u8_TimerChannel,uint32_t u8_TickCounts)
+{
+	uint8_t retval = ERROR_OK;
+ 42a:	80 e0       	ldi	r24, 0x00	; 0
+					case POLLING :	SET_BIT(TIMER0_TCCR0,TIMER0_TCCR0_WGM01);
+									CLR_BIT(TIMER0_TCCR0,TIMER0_TCCR0_WGM00); 
+									CLR_BIT(TIMER0_TIMSK,TIMER0_TIMSK_OCIE0);                                        
+									TIMER0_TCCR0 |= gau8_TimerPrescaller[TIMER0];  
+									TIMER0_OCR0 = u8_TickCounts;
+					break;
+ 42c:	08 95       	ret
+					case INTERRUPT:	SET_BIT(TIMER0_TCCR0,TIMER0_TCCR0_WGM01);
+ 42e:	83 b7       	in	r24, 0x33	; 51
+ 430:	88 60       	ori	r24, 0x08	; 8
+ 432:	83 bf       	out	0x33, r24	; 51
+									CLR_BIT(TIMER0_TCCR0,TIMER0_TCCR0_WGM00);
+ 434:	83 b7       	in	r24, 0x33	; 51
+ 436:	8f 7b       	andi	r24, 0xBF	; 191
+ 438:	83 bf       	out	0x33, r24	; 51
+									SET_BIT(SREG,GLOBAL_INTERRUPT_ENABLE);  
+ 43a:	8f b7       	in	r24, 0x3f	; 63
+ 43c:	80 68       	ori	r24, 0x80	; 128
+ 43e:	8f bf       	out	0x3f, r24	; 63
+									SET_BIT(TIMER0_TIMSK,TIMER0_TIMSK_OCIE0);
+ 440:	89 b7       	in	r24, 0x39	; 57
+ 442:	82 60       	ori	r24, 0x02	; 2
+ 444:	89 bf       	out	0x39, r24	; 57
+									TIMER0_TCCR0 |= gau8_TimerPrescaller[TIMER0];  
+ 446:	93 b7       	in	r25, 0x33	; 51
+ 448:	80 91 a3 00 	lds	r24, 0x00A3	; 0x8000a3 <gau8_TimerPrescaller>
+ 44c:	89 2b       	or	r24, r25
+ 44e:	83 bf       	out	0x33, r24	; 51
+									TIMER0_OCR0 = u8_TickCounts;
+ 450:	4c bf       	out	0x3c, r20	; 60
+}
+
+
+extern uint8_t Timer_Start(uint8_t u8_TimerChannel,uint32_t u8_TickCounts)
+{
+	uint8_t retval = ERROR_OK;
+ 452:	80 e0       	ldi	r24, 0x00	; 0
+									SET_BIT(SREG,GLOBAL_INTERRUPT_ENABLE);  
+									SET_BIT(TIMER0_TIMSK,TIMER0_TIMSK_OCIE0);
+									TIMER0_TCCR0 |= gau8_TimerPrescaller[TIMER0];  
+									TIMER0_OCR0 = u8_TickCounts;
+									//DIO_Write_Pin(9,1);
+					break;
+ 454:	08 95       	ret
+			}
+			break;
+
+
+		case TIMER1 :                                 
+		if(u8_TickCounts < TIMER1_OVERFLOW)
+ 456:	41 15       	cp	r20, r1
+ 458:	51 05       	cpc	r21, r1
+ 45a:	81 e0       	ldi	r24, 0x01	; 1
+ 45c:	68 07       	cpc	r22, r24
+ 45e:	71 05       	cpc	r23, r1
+ 460:	08 f0       	brcs	.+2      	; 0x464 <__LOCK_REGION_LENGTH__+0x64>
+ 462:	62 c0       	rjmp	.+196    	; 0x528 <__LOCK_REGION_LENGTH__+0x128>
+		{
+			TIMER1_TCNT1 = TIMER1_OVERFLOW - u8_TickCounts;
+ 464:	51 95       	neg	r21
+ 466:	41 95       	neg	r20
+ 468:	51 09       	sbc	r21, r1
+ 46a:	5d bd       	out	0x2d, r21	; 45
+ 46c:	4c bd       	out	0x2c, r20	; 44
+			switch(gau8_TimerMode[TIMER1])                
+ 46e:	80 91 a1 00 	lds	r24, 0x00A1	; 0x8000a1 <gau8_TimerMode+0x1>
+ 472:	88 23       	and	r24, r24
+ 474:	19 f0       	breq	.+6      	; 0x47c <__LOCK_REGION_LENGTH__+0x7c>
+ 476:	81 30       	cpi	r24, 0x01	; 1
+ 478:	81 f0       	breq	.+32     	; 0x49a <__LOCK_REGION_LENGTH__+0x9a>
+ 47a:	58 c0       	rjmp	.+176    	; 0x52c <__LOCK_REGION_LENGTH__+0x12c>
+			{
+				case POLLING :  TIMER1_TCCR1B &= 0xF8;                     
+ 47c:	8e b5       	in	r24, 0x2e	; 46
+ 47e:	88 7f       	andi	r24, 0xF8	; 248
+ 480:	8e bd       	out	0x2e, r24	; 46
+								TIMER1_TCCR1B |= gau8_TimerPrescaller[TIMER1];  
+ 482:	9e b5       	in	r25, 0x2e	; 46
+ 484:	80 91 a4 00 	lds	r24, 0x00A4	; 0x8000a4 <gau8_TimerPrescaller+0x1>
+ 488:	89 2b       	or	r24, r25
+ 48a:	8e bd       	out	0x2e, r24	; 46
+								SET_BIT(TIMER1_TIFR,TIMER1_TIFR_TOV1);
+ 48c:	88 b7       	in	r24, 0x38	; 56
+ 48e:	84 60       	ori	r24, 0x04	; 4
+ 490:	88 bf       	out	0x38, r24	; 56
+								TIMER1_TCNT1 = 0;
+ 492:	1d bc       	out	0x2d, r1	; 45
+ 494:	1c bc       	out	0x2c, r1	; 44
+}
+
+
+extern uint8_t Timer_Start(uint8_t u8_TimerChannel,uint32_t u8_TickCounts)
+{
+	uint8_t retval = ERROR_OK;
+ 496:	80 e0       	ldi	r24, 0x00	; 0
+			{
+				case POLLING :  TIMER1_TCCR1B &= 0xF8;                     
+								TIMER1_TCCR1B |= gau8_TimerPrescaller[TIMER1];  
+								SET_BIT(TIMER1_TIFR,TIMER1_TIFR_TOV1);
+								TIMER1_TCNT1 = 0;
+								break;
+ 498:	08 95       	ret
+				case INTERRUPT: TIMER1_TCCR1B &= 0xF8;                     
+ 49a:	8e b5       	in	r24, 0x2e	; 46
+ 49c:	88 7f       	andi	r24, 0xF8	; 248
+ 49e:	8e bd       	out	0x2e, r24	; 46
+								TIMER1_TCCR1B |= gau8_TimerPrescaller[TIMER1];  
+ 4a0:	9e b5       	in	r25, 0x2e	; 46
+ 4a2:	80 91 a4 00 	lds	r24, 0x00A4	; 0x8000a4 <gau8_TimerPrescaller+0x1>
+ 4a6:	89 2b       	or	r24, r25
+ 4a8:	8e bd       	out	0x2e, r24	; 46
+								SET_BIT(TIMER1_TIMSK,TIMER1_TIMSK_TOIE1);   
+ 4aa:	89 b7       	in	r24, 0x39	; 57
+ 4ac:	84 60       	ori	r24, 0x04	; 4
+ 4ae:	89 bf       	out	0x39, r24	; 57
+								SET_BIT(SREG,GLOBAL_INTERRUPT_ENABLE);  
+ 4b0:	8f b7       	in	r24, 0x3f	; 63
+ 4b2:	80 68       	ori	r24, 0x80	; 128
+ 4b4:	8f bf       	out	0x3f, r24	; 63
+}
+
+
+extern uint8_t Timer_Start(uint8_t u8_TimerChannel,uint32_t u8_TickCounts)
+{
+	uint8_t retval = ERROR_OK;
+ 4b6:	80 e0       	ldi	r24, 0x00	; 0
+								break;
+				case INTERRUPT: TIMER1_TCCR1B &= 0xF8;                     
+								TIMER1_TCCR1B |= gau8_TimerPrescaller[TIMER1];  
+								SET_BIT(TIMER1_TIMSK,TIMER1_TIMSK_TOIE1);   
+								SET_BIT(SREG,GLOBAL_INTERRUPT_ENABLE);  
+								break;
+ 4b8:	08 95       	ret
+		break;
+
+
+
+		case TIMER2:
+			if(u8_TickCounts < TIMER2_OVERFLOW)
+ 4ba:	4f 3f       	cpi	r20, 0xFF	; 255
+ 4bc:	51 05       	cpc	r21, r1
+ 4be:	61 05       	cpc	r22, r1
+ 4c0:	71 05       	cpc	r23, r1
+ 4c2:	b0 f5       	brcc	.+108    	; 0x530 <__LOCK_REGION_LENGTH__+0x130>
+			{
+				switch(gau8_TimerMode[TIMER2])
+ 4c4:	80 91 a2 00 	lds	r24, 0x00A2	; 0x8000a2 <gau8_TimerMode+0x2>
+ 4c8:	88 23       	and	r24, r24
+ 4ca:	19 f0       	breq	.+6      	; 0x4d2 <__LOCK_REGION_LENGTH__+0xd2>
+ 4cc:	81 30       	cpi	r24, 0x01	; 1
+ 4ce:	91 f0       	breq	.+36     	; 0x4f4 <__LOCK_REGION_LENGTH__+0xf4>
+ 4d0:	31 c0       	rjmp	.+98     	; 0x534 <__LOCK_REGION_LENGTH__+0x134>
+				{
+					case POLLING :	SET_BIT(TIMER2_TCCR2,TIMER2_TCCR2_WGM21);
+ 4d2:	85 b5       	in	r24, 0x25	; 37
+ 4d4:	88 60       	ori	r24, 0x08	; 8
+ 4d6:	85 bd       	out	0x25, r24	; 37
+									CLR_BIT(TIMER2_TCCR2,TIMER2_TCCR2_WGM20);
+ 4d8:	85 b5       	in	r24, 0x25	; 37
+ 4da:	8f 7b       	andi	r24, 0xBF	; 191
+ 4dc:	85 bd       	out	0x25, r24	; 37
+									CLR_BIT(TIMER2_TIMSK,TIMER2_TIMSK_OCIE2);
+ 4de:	89 b7       	in	r24, 0x39	; 57
+ 4e0:	8f 77       	andi	r24, 0x7F	; 127
+ 4e2:	89 bf       	out	0x39, r24	; 57
+									TIMER2_TCCR2 |= gau8_TimerPrescaller[TIMER2];
+ 4e4:	95 b5       	in	r25, 0x25	; 37
+ 4e6:	80 91 a5 00 	lds	r24, 0x00A5	; 0x8000a5 <gau8_TimerPrescaller+0x2>
+ 4ea:	89 2b       	or	r24, r25
+ 4ec:	85 bd       	out	0x25, r24	; 37
+									TIMER2_OCR2 = u8_TickCounts;
+ 4ee:	43 bd       	out	0x23, r20	; 35
+}
+
+
+extern uint8_t Timer_Start(uint8_t u8_TimerChannel,uint32_t u8_TickCounts)
+{
+	uint8_t retval = ERROR_OK;
+ 4f0:	80 e0       	ldi	r24, 0x00	; 0
+					case POLLING :	SET_BIT(TIMER2_TCCR2,TIMER2_TCCR2_WGM21);
+									CLR_BIT(TIMER2_TCCR2,TIMER2_TCCR2_WGM20);
+									CLR_BIT(TIMER2_TIMSK,TIMER2_TIMSK_OCIE2);
+									TIMER2_TCCR2 |= gau8_TimerPrescaller[TIMER2];
+									TIMER2_OCR2 = u8_TickCounts;
+					break;
+ 4f2:	08 95       	ret
+					case INTERRUPT:	SET_BIT(TIMER2_TCCR2,TIMER2_TCCR2_WGM21);
+ 4f4:	85 b5       	in	r24, 0x25	; 37
+ 4f6:	88 60       	ori	r24, 0x08	; 8
+ 4f8:	85 bd       	out	0x25, r24	; 37
+									CLR_BIT(TIMER2_TCCR2,TIMER2_TCCR2_WGM20);
+ 4fa:	85 b5       	in	r24, 0x25	; 37
+ 4fc:	8f 7b       	andi	r24, 0xBF	; 191
+ 4fe:	85 bd       	out	0x25, r24	; 37
+									SET_BIT(SREG,GLOBAL_INTERRUPT_ENABLE);
+ 500:	8f b7       	in	r24, 0x3f	; 63
+ 502:	80 68       	ori	r24, 0x80	; 128
+ 504:	8f bf       	out	0x3f, r24	; 63
+									SET_BIT(TIMER2_TIMSK,TIMER2_TIMSK_OCIE2);
+ 506:	89 b7       	in	r24, 0x39	; 57
+ 508:	80 68       	ori	r24, 0x80	; 128
+ 50a:	89 bf       	out	0x39, r24	; 57
+									TIMER2_TCCR2 |= gau8_TimerPrescaller[TIMER2];
+ 50c:	95 b5       	in	r25, 0x25	; 37
+ 50e:	80 91 a5 00 	lds	r24, 0x00A5	; 0x8000a5 <gau8_TimerPrescaller+0x2>
+ 512:	89 2b       	or	r24, r25
+ 514:	85 bd       	out	0x25, r24	; 37
+									TIMER2_OCR2 = u8_TickCounts;
+ 516:	43 bd       	out	0x23, r20	; 35
+}
+
+
+extern uint8_t Timer_Start(uint8_t u8_TimerChannel,uint32_t u8_TickCounts)
+{
+	uint8_t retval = ERROR_OK;
+ 518:	80 e0       	ldi	r24, 0x00	; 0
+									CLR_BIT(TIMER2_TCCR2,TIMER2_TCCR2_WGM20);
+									SET_BIT(SREG,GLOBAL_INTERRUPT_ENABLE);
+									SET_BIT(TIMER2_TIMSK,TIMER2_TIMSK_OCIE2);
+									TIMER2_TCCR2 |= gau8_TimerPrescaller[TIMER2];
+									TIMER2_OCR2 = u8_TickCounts;
+					break;
+ 51a:	08 95       	ret
+			else
+			{
+				retval = ERROR_NOK;
+			}
+			break;
+		default:  retval = ERROR_NOK; 
+ 51c:	81 e0       	ldi	r24, 0x01	; 1
+ 51e:	08 95       	ret
+					break;
+				}
+			}
+			else
+			{
+				retval = ERROR_NOK; 
+ 520:	81 e0       	ldi	r24, 0x01	; 1
+ 522:	08 95       	ret
+									SET_BIT(TIMER0_TIMSK,TIMER0_TIMSK_OCIE0);
+									TIMER0_TCCR0 |= gau8_TimerPrescaller[TIMER0];  
+									TIMER0_OCR0 = u8_TickCounts;
+									//DIO_Write_Pin(9,1);
+					break;
+					default: retval = ERROR_NOK;
+ 524:	81 e0       	ldi	r24, 0x01	; 1
+ 526:	08 95       	ret
+						 break;
+			}
+		}
+		else
+		{
+			retval = ERROR_NOK; 
+ 528:	81 e0       	ldi	r24, 0x01	; 1
+ 52a:	08 95       	ret
+				case INTERRUPT: TIMER1_TCCR1B &= 0xF8;                     
+								TIMER1_TCCR1B |= gau8_TimerPrescaller[TIMER1];  
+								SET_BIT(TIMER1_TIMSK,TIMER1_TIMSK_TOIE1);   
+								SET_BIT(SREG,GLOBAL_INTERRUPT_ENABLE);  
+								break;
+				default: retval = ERROR_NOK;
+ 52c:	81 e0       	ldi	r24, 0x01	; 1
+ 52e:	08 95       	ret
+					break;
+				}
+			}
+			else
+			{
+				retval = ERROR_NOK;
+ 530:	81 e0       	ldi	r24, 0x01	; 1
+ 532:	08 95       	ret
+									SET_BIT(SREG,GLOBAL_INTERRUPT_ENABLE);
+									SET_BIT(TIMER2_TIMSK,TIMER2_TIMSK_OCIE2);
+									TIMER2_TCCR2 |= gau8_TimerPrescaller[TIMER2];
+									TIMER2_OCR2 = u8_TickCounts;
+					break;
+					default: retval = ERROR_NOK;
+ 534:	81 e0       	ldi	r24, 0x01	; 1
+			break;
+		default:  retval = ERROR_NOK; 
+		break;
+	}
+	return retval; 
+}
+ 536:	08 95       	ret
+
+00000538 <main>:
+
+
+
+int main(void)
+{
+	DIO_Init_Port(PORT_B,OUTPUTS);
+ 538:	6f ef       	ldi	r22, 0xFF	; 255
+ 53a:	81 e0       	ldi	r24, 0x01	; 1
+ 53c:	0e 94 3c 01 	call	0x278	; 0x278 <DIO_Init_Port>
+	TMU_Init(1);
+ 540:	81 e0       	ldi	r24, 0x01	; 1
+ 542:	90 e0       	ldi	r25, 0x00	; 0
+ 544:	0e 94 5d 00 	call	0xba	; 0xba <TMU_Init>
+	TMU_Start(&LED_1);
+ 548:	82 e7       	ldi	r24, 0x72	; 114
+ 54a:	90 e0       	ldi	r25, 0x00	; 0
+ 54c:	0e 94 71 00 	call	0xe2	; 0xe2 <TMU_Start>
+	TMU_Start(&LED_2);
+ 550:	8c e6       	ldi	r24, 0x6C	; 108
+ 552:	90 e0       	ldi	r25, 0x00	; 0
+ 554:	0e 94 71 00 	call	0xe2	; 0xe2 <TMU_Start>
+	TMU_Start(&LED_3);
+ 558:	86 e6       	ldi	r24, 0x66	; 102
+ 55a:	90 e0       	ldi	r25, 0x00	; 0
+ 55c:	0e 94 71 00 	call	0xe2	; 0xe2 <TMU_Start>
+	TMU_Start(&LED_4);
+ 560:	80 e6       	ldi	r24, 0x60	; 96
+ 562:	90 e0       	ldi	r25, 0x00	; 0
+ 564:	0e 94 71 00 	call	0xe2	; 0xe2 <TMU_Start>
+    while (1) 
+    {
+	TMU_Dispatcher();
+ 568:	0e 94 c1 00 	call	0x182	; 0x182 <TMU_Dispatcher>
+ 56c:	fd cf       	rjmp	.-6      	; 0x568 <main+0x30>
+
+0000056e <_exit>:
+ 56e:	f8 94       	cli
+
+00000570 <__stop_program>:
+ 570:	ff cf       	rjmp	.-2      	; 0x570 <__stop_program>
